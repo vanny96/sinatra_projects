@@ -3,12 +3,12 @@ require 'yaml'
 
 
 class Hangman
-	attr_accessor :word, :counter, :displayed_word
+	attr_accessor :counter, :displayed_word
 
 	def initialize
 		@word = choose_word
 		@displayed_word = []
-		@counter = -1
+		@counter = 0
 		@word.length.times do
 			@displayed_word << "_ "
 		end 
@@ -37,12 +37,12 @@ class Hangman
 	#Serialization code
 	def save_game
 	  data = {word: @word, displayed_word: @displayed_word, counter: @counter}
-		file = File.open 'savegame.yml', 'w'
+		file = File.open 'apps/hangman/savegame.yml', 'w'
 		file.puts YAML.dump(data)
 		file.close
 	end
 	def load_game
-		data = YAML.load(File.open('savegame.yml'))
+		data = YAML.load(File.open('apps/hangman/savegame.yml'))
 		@word = data[:word]
 		@displayed_word = data[:displayed_word]
 		@counter = data[:counter]
