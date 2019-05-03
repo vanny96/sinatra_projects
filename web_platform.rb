@@ -1,6 +1,6 @@
 #ruby web_platform.rb
 require "sinatra"
-require "sinatra/reloader"
+require "sinatra/reloader" if development?
 require_relative "apps/caesar-cipher/caesar-cipher"
 require_relative "apps/hangman/hangman"
 
